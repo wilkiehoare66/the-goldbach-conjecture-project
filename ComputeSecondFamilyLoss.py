@@ -53,3 +53,12 @@ print(f"\nResults:")
 print(f"Number of primes summed: {num_primes}")
 print(f"Sum of η(t) over primes: {sum_result:.4f}")
 print(f"Sum (more precision): {sum_result:.10f}")
+
+"""
+Output:
+
+Results:
+Number of primes summed: 1223
+Sum of η(t) over primes: 0.0999
+Sum (more precision): 0.0998635809
+"""
