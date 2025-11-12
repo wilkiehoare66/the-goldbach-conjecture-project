@@ -2,8 +2,8 @@ import sympy
 import math
 
 n = 8 * 10**9
-omega_k = 26
-M = 900
+omega_k = 32
+M = 210
 
 def eta(q, n, M):
     if q <= 1:
@@ -28,9 +28,9 @@ def eta(q, n, M):
                 eta_value = (1 / (q - 1)) * (numerator / denominator)
                 return eta_value
             
-            else:  # q ≥ 113 and n > 900q
-                # Check the condition n > 900q
-                if n <= 900 * q:
+            else:  # q ≥ 113 and n > Mq (not 900q since M can vary)
+                # Check the condition n > Mq
+                if n <= M * q:
                     return 0
                 
                 # Check if n/L > 1 to avoid log of negative/zero
@@ -52,8 +52,8 @@ def eta(q, n, M):
         
         # Case 2: L > 10^5 (from Lemma 5.2)
         else:
-            # Check the condition n > 900q^2
-            if n <= 900 * q**2:
+            # Check the condition n > Mq^2 (not 900q^2 since M can vary)
+            if n <= M * q**2:
                 return 0
             
             # Check if n/L > 1 to avoid log of negative/zero
@@ -81,9 +81,11 @@ def sum_eta_over_primes(omega_k, n, M):
     prime_count = 0
     prime_contributions = []
     
-    for q in sympy.primerange(7, 10**7):  # Arbitrary large upper bound
-        if q in [2, 3, 5]:
-            continue  # Skip primes that divide M
+    excluded_primes = list(sympy.primefactors(M))
+    
+    for q in sympy.primerange(2, 10**7):
+        if q in excluded_primes:
+            continue  # Skip ALL primes that divide M
         
         eta_value = eta(q, n, M)
         total += eta_value
@@ -100,7 +102,7 @@ def sum_eta_over_primes(omega_k, n, M):
 sum_result, num_primes, contributions = sum_eta_over_primes(omega_k, n, M)
 
 # Display results
-print(f"\nResults:")
+print(f"Results:")
 print(f"Number of primes summed: {num_primes}")
 print(f"Sum of η(q) over primes: {sum_result:.4f}")
 print(f"Sum (more precision): {sum_result:.10f}")
@@ -108,7 +110,8 @@ print(f"Sum (more precision): {sum_result:.10f}")
 """
 Output:
 
-Number of primes summed: 26
-Sum of η(q) over primes: 0.9616
-Sum (more precision): 0.9615567361
+Results:
+Number of primes summed: 32
+Sum of η(q) over primes: 0.9691
+Sum (more precision): 0.9691130851
 """
