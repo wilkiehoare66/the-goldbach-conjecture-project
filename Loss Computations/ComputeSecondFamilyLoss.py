@@ -1,7 +1,6 @@
 import sympy
 import math
 
-# Parameters
 n = 8 * 10**9
 omega_k = 26
 M = 900
