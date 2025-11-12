@@ -2,8 +2,8 @@ import sympy
 import math
 
 n = 8 * 10**9
-omega_k = 26
-M = 900
+omega_k = 32
+M = 210
 max_prime = 10000
 
 def get_nth_prime_excluding_M_factors(n, M):
@@ -19,7 +19,7 @@ def get_nth_prime_excluding_M_factors(n, M):
                 return p
     return None
 
-def eta(t, n):
+def eta(t, n, M):
     if t <= 1:
         return 0
     
@@ -29,8 +29,7 @@ def eta(t, n):
         # Calculate each component
         term1 = 2 / (t * (t - 1))
         
-        # Check if n/900t² > 1 to avoid log of negative/zero
-        denominator_arg = n / (900 * t**2)
+        denominator_arg = n / (M * t**2)
         if denominator_arg <= 1:
             return 0
         term2 = log_n / math.log(denominator_arg)
@@ -58,15 +57,15 @@ def sum_eta_over_primes(omega_k, max_prime, n, M):
     
     # Generate primes and calculate sum
     for p in sympy.primerange(starting_prime, max_prime + 1):
-        eta_value = eta(p, n)
+        eta_value = eta(p, n, M)  # Pass M to eta function
         total += eta_value
         prime_contributions.append((p, eta_value))
         prime_count += 1
     
-    return total, prime_count, starting_prime, prime_contributions
+    return total, prime_count, starting_prime, prime_contributions, last_first_family_prime
 
 # Calculate second family
-sum_result, num_primes, starting_prime, contributions = sum_eta_over_primes(omega_k, max_prime, n, M)
+sum_result, num_primes, starting_prime, contributions, last_first = sum_eta_over_primes(omega_k, max_prime, n, M)
 
 # Display results
 print(f"\nResults:")
@@ -78,7 +77,7 @@ print(f"Sum (more precision): {sum_result:.10f}")
 Output:
 
 Results:
-Number of primes summed: 1200
-Sum of η(t) over primes: 0.0210
-Sum (more precision): 0.0209938476
+Number of primes summed: 1193
+Sum of η(t) over primes: 0.0121
+Sum (more precision): 0.0121206904
 """
