@@ -2,7 +2,7 @@ import sympy
 import math
 
 n = 8 * 10**9
-omega_k = 32
+omega_k = 91
 M = 210
 max_prime = 10000
 
@@ -34,11 +34,11 @@ def eta(t, n, M):
             return 0
         term2 = log_n / math.log(denominator_arg)
         
-        # Check if 7*log(n) - 2 != 0 to avoid division by zero
-        denominator3 = 7 * log_n - 2
+        # Check if 35*log(n) - 2 != 0 to avoid division by zero
+        denominator3 = 35 * log_n - 2
         if abs(denominator3) < 1e-10:
             return 0
-        term3 = (7 * log_n) / denominator3
+        term3 = (35 * log_n) / denominator3
         
         result = term1 * term2 * term3
         return result
@@ -77,7 +77,7 @@ print(f"Sum (more precision): {sum_result:.10f}")
 Output:
 
 Results:
-Number of primes summed: 1193
-Sum of η(t) over primes: 0.0121
-Sum (more precision): 0.0121206904
+Number of primes summed: 1134
+Sum of η(t) over primes: 0.0063
+Sum (more precision): 0.0063303732
 """

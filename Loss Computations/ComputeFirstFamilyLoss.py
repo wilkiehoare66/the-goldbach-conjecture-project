@@ -2,7 +2,7 @@ import sympy
 import math
 
 n = 8 * 10**9
-omega_k = 32
+omega_k = 91
 M = 210
 
 def eta(q, n, M):
@@ -16,44 +16,21 @@ def eta(q, n, M):
         
         # Case 1: L ≤ 10^5 (from Lemma 5.2)
         if L <= 10**5:
-            if q <= 109:
-                # First subcase: q ≤ 109
-                numerator = 14 * log_n + 21
-                denominator = 14 * log_n - 14
-                
-                # Check for division by zero
-                if abs(denominator) < 1e-10:
-                    return 0
-                    
-                eta_value = (1 / (q - 1)) * (numerator / denominator)
-                return eta_value
+            # Use the Case 1 bound uniformly for all primes with L ≤ 10^5
+            numerator = 70 * log_n + 21
+            denominator = 70 * log_n - 4
             
-            else:  # q ≥ 113 and n > Mq (not 900q since M can vary)
-                # Check the condition n > Mq
-                if n <= M * q:
-                    return 0
-                
-                # Check if n/L > 1 to avoid log of negative/zero
-                if n/L <= 1:
-                    return 0
-                
-                # Calculate each component
-                term1 = 2 / (q - 1)
-                term2 = log_n / math.log(n / L)
-                
-                # Check if 7*log(n) - 2 != 0 to avoid division by zero
-                denominator3 = 7 * log_n - 2
-                if abs(denominator3) < 1e-10:
-                    return 0
-                term3 = (7 * log_n) / denominator3
-                
-                eta_value = term1 * term2 * term3
-                return eta_value
-        
+            # Check for division by zero
+            if abs(denominator) < 1e-10:
+                return 0
+            
+            eta_value = (1 / (q - 1)) * (numerator / denominator)
+            return eta_value
+
         # Case 2: L > 10^5 (from Lemma 5.2)
         else:
-            # Check the condition n > Mq^2 (not 900q^2 since M can vary)
-            if n <= M * q**2:
+            # Check the condition n > Mq
+            if n <= M * q:
                 return 0
             
             # Check if n/L > 1 to avoid log of negative/zero
@@ -64,11 +41,11 @@ def eta(q, n, M):
             term1 = 2 / (q - 1)
             term2 = log_n / math.log(n / L)
             
-            # Check if 7*log(n) - 2 != 0 to avoid division by zero
-            denominator3 = 7 * log_n - 2
+            # Check if 35*log(n) - 2 != 0 to avoid division by zero
+            denominator3 = 35 * log_n - 2
             if abs(denominator3) < 1e-10:
                 return 0
-            term3 = (7 * log_n) / denominator3
+            term3 = (35 * log_n) / denominator3
             
             eta_value = term1 * term2 * term3
             return eta_value
@@ -81,11 +58,14 @@ def sum_eta_over_primes(omega_k, n, M):
     prime_count = 0
     prime_contributions = []
     
-    excluded_primes = list(sympy.primefactors(M))
-    
-    for q in sympy.primerange(2, 10**7):
-        if q in excluded_primes:
-            continue  # Skip ALL primes that divide M
+    # Find primes that do not divide M (since those are the q we care about)
+    q = 2
+    while True:
+        q = sympy.nextprime(q)
+        
+        # Skip primes dividing M
+        if M % q == 0:
+            continue
         
         eta_value = eta(q, n, M)
         total += eta_value
@@ -111,7 +91,7 @@ print(f"Sum (more precision): {sum_result:.10f}")
 Output:
 
 Results:
-Number of primes summed: 32
-Sum of η(q) over primes: 0.9691
-Sum (more precision): 0.9691130851
+Number of primes summed: 91
+Sum of η(q) over primes: 0.9928
+Sum (more precision): 0.9928399840
 """
