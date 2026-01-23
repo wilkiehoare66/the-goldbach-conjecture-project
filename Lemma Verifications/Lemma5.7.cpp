@@ -13,11 +13,12 @@
 #include <atomic>
 #include <iomanip>
 #include <thread>
+#include <numeric>
 
-const int OMEGA_K_MAX = 35;
+const int OMEGA_K_MAX = 94;
 const long long MAX_PRIME_SIEVE = 100000000;
 
-const int MAX_THREADS = 7;
+const int MAX_THREADS = 6;
 const int CHUNKS_PER_BATCH = 20;
 const int COOLDOWN_SECONDS = 30;
 const bool ENABLE_COOLDOWN = true;
@@ -184,15 +185,14 @@ bool squarefreeOdds(long long a) {
     return true;
 }
 
+static inline long long odd_part(long long x) {
+    if (x == 0) return 0;
+    unsigned long long ux = static_cast<unsigned long long>(x);
+    return x >> __builtin_ctzll(ux);
+}
+
 bool coprimeWeaker(long long a, long long b) {
-    auto fa = factorize(a);
-    auto fb = factorize(b);
-    for (const auto& [prime, exp] : fa) {
-        if (prime > 2 && fb.count(prime) > 0) {
-            return false;
-        }
-    }
-    return true;
+    return std::gcd(odd_part(a), odd_part(b)) == 1;
 }
 
 std::set<std::tuple<long long, long long, long long>> threeProgressions() {
@@ -288,7 +288,9 @@ std::vector<long long> proc(long long fromme, long long upto,
     long long w = fromme;
     
     while (w <= upto) {
-        if (representations[w] < OMEGA_K_MAX) {
+        auto it = representations.find(w);
+        int rep_count = (it == representations.end()) ? 0 : it->second;
+        if (rep_count < OMEGA_K_MAX) {
             if (!check(w)) {
                 exceptions.push_back(w);
             }
