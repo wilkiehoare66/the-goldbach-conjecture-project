@@ -288,9 +288,7 @@ std::vector<long long> proc(long long fromme, long long upto,
     long long w = fromme;
     
     while (w <= upto) {
-        auto it = representations.find(w);
-        int rep_count = (it == representations.end()) ? 0 : it->second;
-        if (rep_count < OMEGA_K_MAX) {
+        if (representations[w] < OMEGA_K_MAX) {
             if (!check(w)) {
                 exceptions.push_back(w);
             }
@@ -443,3 +441,4 @@ int main() {
     
     return 0;
 }
+
