@@ -2,8 +2,8 @@ import sympy
 import math
 
 n = 8 * 10**9
-omega_k = 91
-M = 210
+omega_k = 105
+M = 105
 
 def eta(q, n, M):
     if q <= 1:
@@ -31,11 +31,11 @@ def eta(q, n, M):
         else:
             # Check the condition n > Mq
             if n <= M * q:
-                return 0
+                return 49 * log_n / n
             
             # Check if n/L > 1 to avoid log of negative/zero
             if n/L <= 1:
-                return 0
+                return 49 * log_n / n
             
             # Calculate each component
             term1 = 2 / (q - 1)
@@ -59,10 +59,11 @@ def sum_eta_over_primes(omega_k, n, M):
     prime_contributions = []
     
     # Find primes that do not divide M (since those are the q we care about)
-    q = 2
+    q = 10
     while True:
         q = sympy.nextprime(q)
-        
+        if q < 11:
+            continue
         # Skip primes dividing M
         if M % q == 0:
             continue
@@ -91,7 +92,7 @@ print(f"Sum (more precision): {sum_result:.10f}")
 Output:
 
 Results:
-Number of primes summed: 91
-Sum of η(q) over primes: 0.9928
-Sum (more precision): 0.9928399840
+Number of primes summed: 105
+Sum of η(q) over primes: 0.9937
+Sum (more precision): 0.9936666218
 """
