@@ -15,7 +15,7 @@
 #include <thread>
 #include <numeric>
 
-const int OMEGA_K_MAX = 94;
+const int OMEGA_K_MAX = 108;
 const long long MAX_PRIME_SIEVE = 100000000;
 
 const int MAX_THREADS = 6;
@@ -441,4 +441,3 @@ int main() {
     
     return 0;
 }
-
