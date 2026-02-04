@@ -32,7 +32,7 @@ N0_USE = 2e12
 # =========================================================
 # OTHER INPUTS
 # =========================================================
-C_THETA_1_HJ = 9.5913e-4  # HJ: c_theta(1) = 9.5913 × 10^-4
+C_THETA_1_HJ = 9.5913e-4  # HJ: c_theta(1) = 9.5913 * 10^-4
 C_ARTIN_LOWER = 0.37395   # HJ: c = 0.37395... (safe lower bound)
 C_ALL_FILE = "c_all_rounded.txt"  # Bennett table path
 
@@ -42,7 +42,7 @@ C_ALL_FILE = "c_all_rounded.txt"  # Bennett table path
 # -------------------------
 def compute_worst_case_k(omega_max: int) -> tuple:
     """
-    Compute the worst-case k for ω(k) ≤ omega_max.
+    Compute the worst-case k for omega(k) <= omega_max.
     Product of first omega_max odd primes.
     """
     if omega_max < 1:
@@ -67,19 +67,19 @@ def is_squarefree(n: int) -> bool:
 
 @lru_cache(maxsize=None)
 def mu2(n: int) -> int:
-    """Squarefree indicator function μ²(n)."""
+    """Squarefree indicator function mu^2(n)."""
     return 1 if is_squarefree(n) else 0
 
 
 @lru_cache(maxsize=None)
 def phi(n: int) -> int:
-    """Euler's totient function φ(n)."""
+    """Euler's totient function phi(n)."""
     return totient(n) if n > 0 else 0
 
 
 @lru_cache(maxsize=None)
 def phi_sq(n: int) -> int:
-    """φ(n²)."""
+    """phi(n^2)."""
     return totient(n * n)
 
 
@@ -115,7 +115,7 @@ S_TOTAL = float(mp.zeta(2) * mp.zeta(3) / mp.zeta(6))
 
 
 def total_coprime_constant(d: int) -> float:
-    """Sum_{b≥1, gcd(b,d)=1} μ²(b)/φ(b²) via Euler product."""
+    """Sum_{b>=1, gcd(b,d)=1} mu^2(b)/phi(b^2) via Euler product."""
     denom = 1.0
     for p in primes_of_squarefree(d):
         denom *= (1.0 + 1.0 / (p * (p - 1)))
