@@ -24,7 +24,7 @@ const int COOLDOWN_SECONDS = 30;
 const bool ENABLE_COOLDOWN = true;
 
 // For automatic resume after crash
-const std::string CHECKPOINT_FILE = "lemma4_4_checkpoint.dat";
+const std::string CHECKPOINT_FILE = "lemma5_10_checkpoint.dat";
 
 // ========================================================
 
@@ -396,7 +396,7 @@ int main() {
                     
                     // Periodic save of results
                     if (completed_chunks % 50 == 0) {
-                        saveResults("lemma4_4_partial");
+                        saveResults("lemma5_10_partial");
                         std::cout << "  Partial results saved." << std::endl;
                     }
                 }
@@ -416,7 +416,7 @@ int main() {
     std::cout << "\nProcessing complete! Saving final results..." << std::endl;
     
     // Save final results
-    saveResults("lemma4_4_final");
+    saveResults("lemma5_10_final");
     
     // Summary
     int total_exceptions = 0;
@@ -435,9 +435,10 @@ int main() {
     std::cout << "Processing time: " << processing_duration.count() / 3600 << " hours\n";
     std::cout << "Total time: " << total_duration.count() / 3600 << " hours\n";
     std::cout << "\nResults saved to:\n";
-    std::cout << "  - lemma4_4_final_results.csv\n";
-    std::cout << "  - lemma4_4_final_results.txt\n";
+    std::cout << "  - lemma5_10_final_results.csv\n";
+    std::cout << "  - lemma5_10_final_results.txt\n";
     std::cout << "\nCheckpoint file can be deleted: " << CHECKPOINT_FILE << "\n";
     
     return 0;
 }
+
