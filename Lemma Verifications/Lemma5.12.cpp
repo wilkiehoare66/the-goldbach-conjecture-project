@@ -15,7 +15,7 @@
 #include <thread>
 #include <numeric>
 
-const int OMEGA_K_MAX = 108;
+const int OMEGA_K_MAX = 41;
 const long long MAX_PRIME_SIEVE = 100000000;
 
 const int MAX_THREADS = 6;
@@ -24,7 +24,7 @@ const int COOLDOWN_SECONDS = 30;
 const bool ENABLE_COOLDOWN = true;
 
 // For automatic resume after crash
-const std::string CHECKPOINT_FILE = "lemma5_10_checkpoint.dat";
+const std::string CHECKPOINT_FILE = "lemma5_12_checkpoint.dat";
 
 // ========================================================
 
@@ -304,7 +304,7 @@ void saveResults(const std::string& prefix) {
     csv << "Chunk,Range_Start,Range_End,Exception_Count,Exceptions\n";
     
     std::ofstream log(prefix + "_results.txt");
-    log << "LEMMA 4.4 COMPUTATION RESULTS (LAPTOP-SAFE VERSION)\n";
+    log << "LEMMA 5.12 COMPUTATION RESULTS (LAPTOP-SAFE VERSION)\n";
     log << "OMEGA_K_MAX = " << OMEGA_K_MAX << "\n";
     log << "Max threads used: " << MAX_THREADS << "\n";
     log << "=====================================\n\n";
@@ -441,4 +441,5 @@ int main() {
     
     return 0;
 }
+
 
