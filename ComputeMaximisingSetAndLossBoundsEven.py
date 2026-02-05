@@ -21,7 +21,7 @@ def sieve_primes(limit: int) -> List[int]:
 
 def eta1_bound(q: int, n: int) -> float:
     """
-    Upper bound from Lemma 5.2 (with a safe patch for q|n -> fallback):
+    Upper bound from Lemma 5.2:
       - if q|n: fallback
       - q <= 947: explicit AP-theta branch
       - q >= 953 and n > 105q: BT-derived branch
@@ -46,7 +46,7 @@ def eta1_bound(q: int, n: int) -> float:
 
 def eta2_bound(t: int, n: int) -> float:
     """
-    Upper bound from Lemma 5.3 (with a safe patch for t|n -> fallback):
+    Upper bound from Lemma 5.3:
       - if t|n: fallback
       - t <= 29: explicit AP-theta branch
       - t >= 31 and n > 105 t^2: BT-derived branch
@@ -97,7 +97,7 @@ def eta1_breakdown(n: int, k_primes: List[int]) -> Dict[str, float]:
         v = eta1_bound(q, n)
         out["total"] += v
 
-        # classify in the same way as eta1_bound (including the patch)
+        # classify in the same way as eta1_bound
         if n % q == 0:
             out["case_fallback"] += v
         elif q <= 947:
@@ -136,7 +136,7 @@ def eta2_total_and_breakdown(n: int, k_primes: List[int]) -> Dict[str, float]:
         out["total"] += v
         out["count_terms"] += 1
 
-        # classify (including patch)
+        # classify
         if n % t == 0:
             out["case_fallback"] += v
         elif t <= 29:
