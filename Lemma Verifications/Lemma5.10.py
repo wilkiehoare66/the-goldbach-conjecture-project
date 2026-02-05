@@ -2,7 +2,7 @@
 
 from sympy import prevprime, primerange, nextprime, factorint, isprime
 
-OMEGA_K_MAX = 108
+OMEGA_K_MAX = 85
 
 def coprime_weaker(a,b):
     fi_A = factorint(a)
