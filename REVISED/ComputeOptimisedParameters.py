@@ -197,9 +197,8 @@ def E_k_over_n(k: int, N: int, C: float, n: float, c_theta_map: dict) -> float:
             tail_total += (1.0 / phi(d // e)) * tail_a
 
             last_total += (
-                (n ** (-0.5)) * (1.0 / e - 1.0 / d)
-                + (1.0 / math.sqrt(d * e)) * (n ** (-C))
-                + (n ** (-2 * C))
+                (n ** (-0.5)) * 0.5 * (1.0 / e - 1.0 / d)
+                + (1.0 / math.sqrt(d * e)) * ((n ** (-C)) + (n ** (-2 * C)))
             )
 
     term1 = S1 / logn
@@ -381,7 +380,7 @@ STEP 1: Coarse Grid Search
   Coarse: 250/285 (88%)
 
   COARSE RESULT:
-    n_0 ≈ 1.791225e+12
+    n_0 ≈ 1.767447e+12
     N   = 55000
     C   = 0.31
 
@@ -396,7 +395,7 @@ STEP 2: Refined Grid Search
   Refine: 600/693 (87%)
 
   REFINED RESULT:
-    n_0 ≈ 1.756529e+12
+    n_0 ≈ 1.732573e+12
     N   = 54000
     C   = 0.312
 """
