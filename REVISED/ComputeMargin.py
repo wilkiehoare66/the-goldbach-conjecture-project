@@ -186,9 +186,8 @@ def E_k_over_n_detailed(k: int, N: int, C: float, n: float, c_theta_map: dict) -
             tail_total += tail_de
 
             last_de = (
-                (n ** (-0.5)) * (1.0 / e - 1.0 / d)
-                + (1.0 / math.sqrt(d * e)) * (n ** (-C))
-                + (n ** (-2 * C))
+                (n ** (-0.5)) * 0.5 * (1.0 / e - 1.0 / d)
+                + (1.0 / math.sqrt(d * e)) * ((n ** (-C)) + (n ** (-2 * C)))
             )
             last_total += last_de
             
@@ -337,14 +336,14 @@ ERROR TERM BREAKDOWN
     multiplier  = 4.263158
     term2       = 0.0834179552
   Term 3 (small terms * log n):
-    last_raw    = 7.4198949065e-04
-    term3       = 2.1016235207e-02
-  TOTAL E_k(n)/n = 0.1508565466
+    last_raw    = 7.3863628188e-04
+    term3       = 2.0921258358e-02
+  TOTAL E_k(n)/n = 0.1507615698
 
 MARGIN (MAIN - ERROR)
   Main term  = 0.1512121309
-  Error term = 0.1508565466
-  Margin     = 0.0003555843
+  Error term = 0.1507615698
+  Margin     = 0.0004505612
 
 POSITIVE MARGIN: Lemma 3.1 applies for n >= 2.00e+12
 """
