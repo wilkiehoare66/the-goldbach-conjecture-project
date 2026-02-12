@@ -28,8 +28,8 @@ const i64 RANGE_START = 4810000001LL;    // Start after previously verified rang
 const i64 RANGE_END = 2000000000000LL;   // 2 * 10^12
 const i64 CHUNK_SIZE = 1000000LL;        // 10^6 (same as original)
 
-const string RESULTS_FILE = "lemma510_results.csv";
-const string CHECKPOINT_FILE = "lemma510_checkpoint.csv";
+const string RESULTS_FILE = "lemma513_results.csv";
+const string CHECKPOINT_FILE = "lemma513_checkpoint.csv";
 
 const int NUM_THREADS = 6;
 
@@ -588,7 +588,7 @@ int main(int argc, char* argv[]) {
     }
     
     cout << "============================================================" << endl;
-    cout << "Lemma 5.10 Verification (C++ with OpenMP)" << endl;
+    cout << "Lemma 5.13 Verification (C++ with OpenMP)" << endl;
     cout << "============================================================" << endl;
     cout << "Range: " << format_number(RANGE_START) << " to " << format_number(RANGE_END) << endl;
     cout << "Chunk size: " << format_number(CHUNK_SIZE) << endl;
