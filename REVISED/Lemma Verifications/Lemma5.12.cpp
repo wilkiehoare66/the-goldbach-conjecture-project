@@ -25,8 +25,8 @@ const i64 RANGE_END = 2000000000000LL;      // 2 * 10^12
 const i64 CHUNK_SIZE = 10000000LL;          // 10^7
 const i64 SMALL_PRIME_LIMIT = 500;          // Small primes < 500 for quick filter
 
-const string RESULTS_FILE = "lemma59_results.csv";
-const string CHECKPOINT_FILE = "lemma59_checkpoint.csv";
+const string RESULTS_FILE = "lemma512_results.csv";
+const string CHECKPOINT_FILE = "lemma512_checkpoint.csv";
 
 const int NUM_THREADS = 6;
 
@@ -449,7 +449,7 @@ int main(int argc, char* argv[]) {
     omp_set_num_threads(num_threads);
     
     cout << "============================================================" << endl;
-    cout << "Lemma 5.9 Verification (CORRECTED - C++ with OpenMP)" << endl;
+    cout << "Lemma 5.12 Verification (C++ with OpenMP)" << endl;
     cout << "============================================================" << endl;
     cout << "Range: " << format_number(RANGE_START) << " to " << format_number(RANGE_END) << endl;
     cout << "Chunk size: " << format_number(CHUNK_SIZE) << endl;
