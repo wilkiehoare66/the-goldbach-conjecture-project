@@ -113,7 +113,7 @@ def compute_constants(k, c, c_theta, xcols, mu, spf):
             if m == 1:
                 continue
             Csum += c_theta.get(m, 0.0)
-            x0_req = max(x0_req, xcols[m][1])
+            x0_req = max(x0_req, xcols[m][0]) #use xtheta, not xthetaH
     tail = sum(
         1.0 / phi_square(a, spf)
         for a in range(c + 1, Z + 1) if gcd(a, k) == 1 and mu[a] != 0
@@ -168,5 +168,4 @@ def main():
 
 
 if __name__ == "__main__":
-
     main()
