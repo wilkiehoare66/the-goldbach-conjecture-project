@@ -88,7 +88,7 @@ def minimize_A(n, Csum, tail, k):
     return bestA2, error_bound(n, bestA2, Csum, tail, k)
 
 
-N, C, Z, K = 4.81e9, 81, 100000, 15
+N, C, Z, K = 8e9, 81, 100000, 15
 
 def main():
     here = Path(__file__).resolve().parent
