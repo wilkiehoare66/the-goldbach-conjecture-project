@@ -4,7 +4,7 @@ from math import gcd
 
 C_ARTIN = 0.3739558136192023
 MAX_TABLE_MOD = 100000
-N, Z = 4.81e9, 100000
+N, Z = 8e9, 100000
 
 
 def load_c_theta(path):
@@ -168,4 +168,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
