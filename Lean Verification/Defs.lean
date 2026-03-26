@@ -49,10 +49,8 @@ def omega (k : ℕ) : ℕ := k.primeFactors.card
 def IsAdmissible (k : ℕ) : Prop :=
   1 < k ∧ Squarefree k ∧ omega k ≤ 3
 
-/-- The set of excluded k values where the odd-n case is not proved.
-    Note: The original paper excludes {105, 165, 195, 231, 255, 273}.
-    Our analysis shows that 429 = 3 · 11 · 13 should also be excluded,
-    as the analytic bounds fail for this value (see ANALYSIS.md). -/
-def ExcludedSet : Finset ℕ := {105, 165, 195, 231, 255, 273, 429}
+/-- The set of excluded k values where the odd-n case is not proved in the
+    current version of the paper. -/
+def ExcludedSet : Finset ℕ := {105, 429}
 
 end
