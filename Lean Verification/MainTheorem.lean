@@ -1,13 +1,10 @@
 import Mathlib
-import RequestProject.Defs
+import Defs
 
 /-!
-# Main Theorem (Corrected): Theorem 5.1
+# Main Theorem: Theorem 5.1
 
-This file states the corrected version of Theorem 5.1 from the paper.
-The correction adds k = 429 = 3 · 11 · 13 to the excluded set,
-as our analysis (see ANALYSIS.md) reveals that the analytic bounds
-in Lemmas 5.9–5.11 do not cover this case for odd n > 8 · 10⁹.
+This file states the current version of Theorem 5.1 from the paper.
 
 ## Structure
 
@@ -23,17 +20,13 @@ reductions that are provable.
 
 open Finset Nat
 
-/-- **Theorem 5.1 (Corrected)**. Fix any integer k > 1 with at most three prime factors.
+/-- **Theorem 5.1**. Fix any integer k > 1 with at most three prime factors.
 
-1. If k is odd and k ∉ {105, 165, 195, 231, 255, 273, 429}, then every integer
+1. If k is odd and k ∉ {105, 429}, then every integer
    n ≥ 60 can be written as the sum of a prime and a squarefree number coprime to k.
 
-2. If k is even (or k ∈ {105, 165, 195, 231, 255, 273, 429}), then every even integer
-   n ≥ 60 can be written as the sum of a prime and a squarefree number coprime to k.
-
-Note: The original paper excludes only {105, 165, 195, 231, 255, 273}.
-We add 429 = 3 · 11 · 13 because the analytic bounds fail for this value
-(R₃₃(n) > 0.07570n but 1/13 + error ≈ 0.07755 > 0.07570). See ANALYSIS.md. -/
+2. If k is even (or k ∈ {105, 429}), then every even integer
+   n ≥ 60 can be written as the sum of a prime and a squarefree number coprime to k. -/
 theorem main_theorem_odd_case (k n : ℕ)
     (hk : 1 < k)
     (hk_sq : Squarefree k)
@@ -52,4 +45,3 @@ theorem main_theorem_even_case (k n : ℕ)
     (hn_even : 2 ∣ n) :
     HasRepresentation k n := by
   sorry
-
