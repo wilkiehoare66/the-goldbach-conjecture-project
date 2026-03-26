@@ -1,5 +1,5 @@
 import Mathlib
-import RequestProject.Defs
+import Defs
 
 /-!
 # Structural Lemmas
@@ -11,7 +11,7 @@ which do not depend on analytic number theory or computation.
 
 - `hasRepresentation_iff_Tk_pos`: A number has a representation iff Tk > 0
 - `excluded_set_properties`: Properties of the excluded k values
-- `even_k_reduction`: Reduction from even k to odd m for even n
+- `even_k_reduction`: Reduction from even k to odd m
 - `representation_from_Tk_minus_Bq`: Combinatorial core of the analytic lemmas
 -/
 
@@ -47,35 +47,20 @@ theorem hasRepresentation_one_iff {n : ℕ} :
 /-- 105 = 3 × 5 × 7 -/
 theorem excluded_105 : 105 = 3 * 5 * 7 := by norm_num
 
-/-- 165 = 3 × 5 × 11 -/
-theorem excluded_165 : 165 = 3 * 5 * 11 := by norm_num
-
-/-- 195 = 3 × 5 × 13 -/
-theorem excluded_195 : 195 = 3 * 5 * 13 := by norm_num
-
-/-- 231 = 3 × 7 × 11 -/
-theorem excluded_231 : 231 = 3 * 7 * 11 := by norm_num
-
-/-- 255 = 3 × 5 × 17 -/
-theorem excluded_255 : 255 = 3 * 5 * 17 := by norm_num
-
-/-- 273 = 3 × 7 × 13 -/
-theorem excluded_273 : 273 = 3 * 7 * 13 := by norm_num
-
-/-- 429 = 3 × 11 × 13 (added to excluded set; see ANALYSIS.md) -/
+/-- 429 = 3 × 11 × 13 -/
 theorem excluded_429 : 429 = 3 * 11 * 13 := by norm_num
 
 /-- All elements of the excluded set are squarefree -/
 theorem excluded_squarefree : ∀ k ∈ ExcludedSet, Squarefree k := by
   intro k hk
   simp [ExcludedSet] at hk
-  rcases hk with rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> native_decide
+  rcases hk with rfl | rfl <;> native_decide
 
 /-- All elements of the excluded set are odd -/
 theorem excluded_odd : ∀ k ∈ ExcludedSet, ¬ 2 ∣ k := by
   intro k hk
   simp [ExcludedSet] at hk
-  rcases hk with rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> omega
+  rcases hk with rfl | rfl <;> omega
 
 /-! ### Even k reduction (proof of Theorem 5.1, even case) -/
 
